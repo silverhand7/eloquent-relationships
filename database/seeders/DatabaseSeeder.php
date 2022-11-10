@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $authors = Author::all();
         foreach ($authors as $author) {
-            $author->books()->syncWithPivotValues(Book::inRandomOrder()->limit(rand(0, 3))->get()->pluck('id')->all(), [
+            $author->books()->syncWithPivotValues(Book::inRandomOrder()->limit(rand(0, 3))->get()->modelKeys(), [
                 'role' => rand(1, 2)
             ]);
         }
