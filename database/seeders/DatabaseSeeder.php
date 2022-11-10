@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Author;
+use App\Models\Book;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,13 +17,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //\App\Models\User::factory(10)->create();
-        \App\Models\Author::factory(15)->create();
-        \App\Models\Book::factory(20)->create();
+        Author::factory(15)->create();
+        Book::factory(20)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $authors = Author::all();
+        foreach ($authors as $author) {
+            $author->books()->syncWithPivotValues(Book::inRandomOrder()->limit(rand(0, 3))->get()->pluck('id')->all(), [
+                'role' => rand(1, 2)
+            ]);
+        }
     }
 }
