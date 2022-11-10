@@ -11,6 +11,11 @@ class Author extends Model
 
     public function books()
     {
-        return $this->belongsToMany(Book::class)->withTimestamps();;
+        return $this->belongsToMany(Book::class)->withTimestamps();
+    }
+
+    public function scopeOrderByName($query)
+    {
+        return $query->orderBy('name');
     }
 }

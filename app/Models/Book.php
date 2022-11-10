@@ -9,4 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     use HasFactory, HasUuids;
+
+    public function authors()
+    {
+        return $this->belongsToMany(Author::class)->withTimestamps();
+    }
+
+    public function scopeOrderByTitle($query)
+    {
+        return $query->orderBy('title');
+    }
 }

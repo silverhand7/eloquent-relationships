@@ -23,6 +23,8 @@
             <div class="row py-4">
                 <div class="col-12">
                     <h1>Eloquent relationship Cheatsheet</h1>
+                    <hr>
+                    <h3>Authors –> Book</h3>
                     <table class="table">
                         <thead>
                             <tr>
@@ -31,6 +33,39 @@
                                 <th>Books</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @foreach($authors as $author)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $author->name }}</td>
+                                    <td>{{ $author->books->implode('title', ', ') }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row py-4">
+                <div class="col-12">
+                    <h3>Books –> Author</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Book</th>
+                                <th>Authors</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($books as $book)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $book->title }}</td>
+                                    <td>{{ $book->authors->implode('name', ', ') }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
