@@ -29,6 +29,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Picture</th>
                                 <th>Name</th>
                                 <th>Books</th>
                                 <th></th>
@@ -38,6 +39,7 @@
                             @foreach($authors as $author)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td><img src="{{ $author->image?->url }}" width="50"></td>
                                     <td>{{ $author->name }}</td>
                                     <td>{{ $author->books->implode('title', ', ') }}</td>
                                 </tr>
@@ -54,6 +56,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Cover</th>
                                 <th>Book</th>
                                 <th>Authors</th>
                             </tr>
@@ -62,6 +65,7 @@
                             @foreach($books as $book)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td><img src="{{ $book->image?->url }}" width="50"></td>
                                     <td>{{ $book->title }}</td>
                                     <td>{{ $book->authors->implode('name', ', ') }}</td>
                                 </tr>
