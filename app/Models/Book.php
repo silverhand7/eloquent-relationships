@@ -15,6 +15,11 @@ class Book extends Model
         return $this->belongsToMany(Author::class)->withTimestamps();
     }
 
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
     public function scopeOrderByTitle($query)
     {
         return $query->orderBy('title');

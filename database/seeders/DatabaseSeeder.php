@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\Image;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,5 +27,7 @@ class DatabaseSeeder extends Seeder
                 'role' => rand(1, 2)
             ]);
         }
+
+        Image::factory()->count(15)->create();
     }
 }

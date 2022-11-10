@@ -14,6 +14,11 @@ class Author extends Model
         return $this->belongsToMany(Book::class)->withTimestamps();
     }
 
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
     public function scopeOrderByName($query)
     {
         return $query->orderBy('name');
